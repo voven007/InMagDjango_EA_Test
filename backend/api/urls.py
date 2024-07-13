@@ -1,7 +1,8 @@
 from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 
-from .v1.urls import urlpatterns as urlpatterns_v1
-
+app_name = 'api'
+router = DefaultRouter
 urlpatterns = [
-    path('v1/', include(urlpatterns_v1)),
+    # path('', include(router.urls)),
 ]
