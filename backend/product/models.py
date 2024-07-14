@@ -1,6 +1,8 @@
 from django.core.validators import RegexValidator
 from django.db import models
 from users.models import User
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFit
 
 
 class BaseCategoryModel(models.Model):
@@ -18,20 +20,22 @@ class BaseCategoryModel(models.Model):
             message='Недопустимый символ в Слаге'
         )]
     )
-    image = models.ImageField(
+    image = ProcessedImageField(
         verbose_name='Изображение',
-        upload_to='resipes/images/category'
+        upload_to='recipes/images/category',
+        processors=[ResizeToFit(380, 380)],
+        format='JPEG', options={'quality': 70}
     )
 
     class Meta:
         abstract = True
+        ordering = ('id',)
 
 
 class Category(BaseCategoryModel):
     """Модель категории товара"""
 
     class Meta:
-        ordering = ('name',)
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
@@ -49,7 +53,6 @@ class SubCategory(BaseCategoryModel):
     )
 
     class Meta:
-        ordering = ('name',)
         verbose_name = 'Подкатегория'
         verbose_name_plural = 'Подкатегории'
 
@@ -92,6 +95,16 @@ class Product(models.Model):
         verbose_name='Изображение',
         upload_to='recipes/images'
     )
+    image_midi = ImageSpecField(
+        processors=[ResizeToFit(150, 150)],
+        format='JPEG',
+        options={'quality': 60}
+    )
+    image_mini = ImageSpecField(
+        processors=[ResizeToFit(60, 60)],
+        format='JPEG',
+        options={'quality': 60}
+    )
     pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата публикации',
@@ -105,6 +118,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def images(self):
+        return [self.image, self.image_midi, self.image_mini]
 
 
 class ImageResisez(models.Model):

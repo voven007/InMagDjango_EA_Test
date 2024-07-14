@@ -24,8 +24,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'product.apps.ProductConfig',
+    'api.apps.ApiConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
+    'imagekit',
 ]
 
 MIDDLEWARE = [

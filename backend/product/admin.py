@@ -35,7 +35,10 @@ class ProductAdmin(admin.ModelAdmin):
         'slug',
         'category',
         'subcategory',
-        'price',)
+        'price',
+        'image',
+        'image_midi',
+        'image_mini',)
     list_editable = ()
     search_fields = ('name',)
     list_filter = ('category', 'subcategory',)
