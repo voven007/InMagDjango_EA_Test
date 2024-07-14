@@ -13,6 +13,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class SubCategorySerializer(serializers.ModelSerializer):
     """Сериализатор для Подкатегорий"""
+    category = serializers.StringRelatedField()
 
     class Meta:
         model = SubCategory
@@ -21,6 +22,8 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     """Сериализатор для Продуктов"""
+    category = serializers.StringRelatedField()
+    subcategory = serializers.StringRelatedField()
 
     class Meta:
         model = Product
@@ -30,6 +33,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class ShoppingCartSerializer(serializers.ModelSerializer):
     """Сериализатор для Корзины покупок"""
+    user = serializers.StringRelatedField()
+    product = serializers.StringRelatedField()
 
     class Meta:
         model = ShoppingCart

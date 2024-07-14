@@ -10,12 +10,15 @@ from rest_framework.permissions import (
 )
 from users.models import User
 
+from .paginators import PageLimitPagination
+
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     """ViewSet для модели Категорий"""
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = (AllowAny,)
+    pagination_class = PageLimitPagination
 
 
 class SubCategoryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -23,6 +26,7 @@ class SubCategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = SubCategory.objects.all()
     serializer_class = SubCategorySerializer
     permission_classes = (AllowAny,)
+    pagination_class = PageLimitPagination
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
@@ -30,6 +34,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = (AllowAny,)
+    pagination_class = PageLimitPagination
 
 
 class ShoppingCartViewSet(viewsets.ReadOnlyModelViewSet):
