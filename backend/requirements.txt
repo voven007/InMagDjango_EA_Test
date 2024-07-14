@@ -1,6 +1,11 @@
 Django==3.2.3
+django-imagekit==5.0.0
 djangorestframework==3.12.4
 djoser==2.1.0
 django-cleanup==8.1.0
+drf-yasg==1.21.7
+isort==5.13.2
+pilkit==3.0
 Pillow==10.0.0
+PyYAML==6.0.1
 python-dotenv==0.19.2

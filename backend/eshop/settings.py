@@ -7,7 +7,8 @@ SECRET_KEY = os.getenv("DJANGO_KEY", "some_key")
 
 DEBUG = os.getenv("DEBUG_MODE", "False")
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'

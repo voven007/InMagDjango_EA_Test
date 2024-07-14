@@ -5,4 +5,4 @@ class PageLimitPagination(PageNumberPagination):
     """Пагинатор для вывода определенного количества объектов на страниц"""
 
     page_size_query_param = 'limit'
-    page_size = 2
+    page_size = 1
