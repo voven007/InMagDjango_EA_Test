@@ -13,14 +13,16 @@ def algoritm(number):
 
 
 def test(number_checked):
-    if number_checked.isdigit() == True:
+    if number_checked.isdigit():
         number_checked = int(number_checked)
         if number_checked < min or number_checked > max:
             return ('Введенное значение вне указанного диапазона')
         else:
             return algoritm(number_checked)
     else:
-        return ('Введенне значение не является числом')
+        return (
+            'Значение не является числом (или число с отрицательным значением)'
+            )
 
 
 def main():
