@@ -124,34 +124,6 @@ class Product(models.Model):
         return [self.image, self.image_midi, self.image_mini]
 
 
-class ImageResisez(models.Model):
-    """Модель трех изображений"""
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        verbose_name='Продукт'
-    )
-    image_1 = models.ImageField(
-        verbose_name='Изображение_1',
-        upload_to='recipes/images/resisez'
-    )
-    image_2 = models.ImageField(
-        verbose_name='Изображение_2',
-        upload_to='recipes/images/resisez'
-    )
-    image_3 = models.ImageField(
-        verbose_name='Изображение_3',
-        upload_to='recipes/images/resisez'
-    )
-
-    class Meta:
-        verbose_name = 'Изображение'
-        verbose_name_plural = 'Изображения'
-
-    def __str__(self):
-        return self.product
-
-
 class ShoppingCart(models.Model):
     """Модель списка покупок"""
     user = models.ForeignKey(

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (
-    Category, ImageResisez, Product, SubCategory, ShoppingCart,)
+    Category, Product, SubCategory, ShoppingCart,)
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -50,19 +50,6 @@ class ProductAdmin(admin.ModelAdmin):
     #     return Favorite.objects.filter(recipe=obj).count()
 
 
-class ImageResisezAdmin(admin.ModelAdmin):
-    list_display = (
-        'product',
-        'image_1',
-        'image_2',
-        'image_3',)
-    list_editable = ()
-    search_fields = ('product',)
-    list_filter = ()
-    list_display_links = ('product',)
-    empty_value_display = 'Не задано'
-
-
 class ShoppingCartAdmin(admin.ModelAdmin):
     list_display = (
         'user',
@@ -78,5 +65,4 @@ class ShoppingCartAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ImageResisez, ImageResisezAdmin)
 admin.site.register(ShoppingCart, ShoppingCartAdmin)
