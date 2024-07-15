@@ -1,5 +1,5 @@
 from product.models import (
-    Category, Product, ShoppingCart, SubCategory)
+    CartProduct, Category, Product, ShoppingCart, SubCategory)
 from rest_framework import serializers
 
 
