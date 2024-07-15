@@ -1,4 +1,4 @@
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MinValueValidator
 from django.db import models
 from users.models import User
 from imagekit.models import ImageSpecField, ProcessedImageField
@@ -136,16 +136,37 @@ class ShoppingCart(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Продукт'
     )
-    quantity = models.PositiveIntegerField(
-        default=1,
-        verbose_name='Количество'
-    )
 
     class Meta:
-        ordering = ('product',)
-        default_related_name = 'product_shopping'
+        ordering = ('user',)
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзины'
 
     def __str__(self):
         return f'{self.user} добавил "{self.product}" в свою корзину'
+
+
+class CartProduct(models.Model):
+    """Модель связи корзины пользователя и товара"""
+    product = models.ForeignKey(
+        Product,
+        verbose_name='Товар',
+        on_delete=models.CASCADE,
+        related_name='products'
+    )
+    cart = models.ForeignKey(
+        ShoppingCart,
+        verbose_name='Корзина',
+        on_delete=models.CASCADE,
+        related_name='cart_products'
+    )
+    amount = models.IntegerField(
+        verbose_name='Кол-во',
+        default=1,
+        validators=(MinValueValidator(1),)
+    )
+
+    class Meta:
+        ordering = ('cart',)
+        verbose_name = 'Товар корзины'
+        verbose_name_plural = 'Товары корзины'

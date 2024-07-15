@@ -53,8 +53,7 @@ class ProductAdmin(admin.ModelAdmin):
 class ShoppingCartAdmin(admin.ModelAdmin):
     list_display = (
         'user',
-        'product',
-        'quantity')
+        'product')
     list_editable = ()
     search_fields = ('user',)
     list_filter = ()
