@@ -6,8 +6,8 @@ from drf_yasg.views import get_schema_view
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Produse_store",
-      default_version='v1',
+      title="InMagDjango_EA_Test",
+      default_version='v0',
       description="Test description",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="produse@produse.ru"),

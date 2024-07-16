@@ -31,6 +31,12 @@ class BaseCategoryModel(models.Model):
         abstract = True
         ordering = ('id',)
 
+    def __str__(self):
+        return '{name} {slug}'.format(
+            name=self.name,
+            slug=self.slug
+        )
+
 
 class Category(BaseCategoryModel):
     """Модель категории товара"""
@@ -57,7 +63,9 @@ class SubCategory(BaseCategoryModel):
         verbose_name_plural = 'Подкатегории'
 
     def __str__(self):
-        return self.name
+        return '{category}'.format(
+            category=self.category.name
+        ) + super().__str__()
 
 
 class Product(models.Model):
@@ -117,7 +125,10 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
 
     def __str__(self):
-        return self.name
+        return '{subcategory} {price}'.format(
+            subcategory=self.subcategory.name,
+            price=self.price
+        ) + super().__str__()
 
     @property
     def images(self):
@@ -143,7 +154,10 @@ class ShoppingCart(models.Model):
         verbose_name_plural = 'Корзины'
 
     def __str__(self):
-        return f'{self.user} добавил "{self.product}" в свою корзину'
+        return '{user}, {products}'.format(
+            user=self.user.username,
+            product=self.product
+        )
 
 
 class CartProduct(models.Model):
@@ -170,3 +184,20 @@ class CartProduct(models.Model):
         ordering = ('cart',)
         verbose_name = 'Товар корзины'
         verbose_name_plural = 'Товары корзины'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['cart', 'product'],
+                name='unique_cartproduct'
+            )
+        ]
+
+    def __str__(self):
+        return '{cart}, {product}, {amount}'.format(
+            cart=self.cart,
+            product=self.product.name,
+            amount=self.amount
+        )
+
+    @property
+    def purchase(self):
+        return self.product.price * self.amount
