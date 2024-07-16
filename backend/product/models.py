@@ -63,9 +63,9 @@ class SubCategory(BaseCategoryModel):
         verbose_name_plural = 'Подкатегории'
 
     def __str__(self):
-        return '{category}'.format(
-            category=self.category.name
-        ) + super().__str__()
+        return '{subcategory}'.format(
+            subcategory=self.name
+        )
 
 
 class Product(models.Model):
