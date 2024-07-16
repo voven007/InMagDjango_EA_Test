@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import (
-    Category, Product, SubCategory, ShoppingCart,)
+from .models import Category, Product, ShoppingCart, SubCategory
 
 
 class CategoryAdmin(admin.ModelAdmin):

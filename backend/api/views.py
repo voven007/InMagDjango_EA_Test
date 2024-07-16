@@ -1,25 +1,20 @@
 
-from api.permissions import Author
-from api.serializers import (
-    AmountProductSerializer,
-    CategorySerializer,
-    CreateUpdateShoppingCartSerializer, DeleteProductShoppingCartSerializer,
-    GetShoppingCartSerializer,
-    SubCategorySerializer, ShoppingCartSerializer,
-    ProductSerializer,
-    ProductShoppingCartSerializer
-)
 from django.shortcuts import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
-from product.models import (
-    CartProduct, Category, Product, ShoppingCart, SubCategory)
+from product.models import CartProduct, Category, Product, SubCategory
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import (
-    AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
-)
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from users.models import User
+
+from api.permissions import Author
+from api.serializers import (AmountProductSerializer, CategorySerializer,
+                             CreateUpdateShoppingCartSerializer,
+                             DeleteProductShoppingCartSerializer,
+                             GetShoppingCartSerializer, ProductSerializer,
+                             ProductShoppingCartSerializer,
+                             SubCategorySerializer)
 
 from .paginators import PageLimitPagination
 

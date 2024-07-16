@@ -1,5 +1,5 @@
-from product.models import (
-    CartProduct, Category, Product, ShoppingCart, SubCategory)
+from product.models import (CartProduct, Category, Product, ShoppingCart,
+                            SubCategory)
 from rest_framework import serializers
 
 
@@ -96,7 +96,8 @@ class CreateUpdateShoppingCartSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if (
             self.context['request'].method in ['POST']
-            and ShoppingCart.objects.filter(user=self.context['request'].user).exists()
+            and ShoppingCart.objects.filter(
+                user=self.context['request'].user).exists()
         ):
             raise serializers.ValidationError('Корзина уже существует.')
         products_data = data.get('products')

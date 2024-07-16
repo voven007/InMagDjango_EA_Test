@@ -1,8 +1,8 @@
-from django.core.validators import RegexValidator, MinValueValidator
+from django.core.validators import MinValueValidator, RegexValidator
 from django.db import models
-from users.models import User
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFit
+from users.models import User
 
 
 class BaseCategoryModel(models.Model):
@@ -154,7 +154,7 @@ class ShoppingCart(models.Model):
         verbose_name_plural = 'Корзины'
 
     def __str__(self):
-        return '{user}, {products}'.format(
+        return '{user}, {product}'.format(
             user=self.user.username,
             product=self.product
         )
