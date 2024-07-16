@@ -17,30 +17,53 @@
 
 ### Запуск проекта
 
-Все команды необходимо выполнять в **папке backend проекта**
+Клонировать репозиторий:
+```
+git clone git@github.com:voven007/InMagDjango_EA_Test.git
+```
+В директории InMagDjango_EA_Test создать и активировать виртуальное окружение:
+```
+python -m venv venv
+source env/scripts/activate
+```
+Установить зависимости из файла requirements.txt:
+```
+python -m pip install --upgrade pip
+pip install -r backend/requirements.txt
+```
+В директории InMagDjango_EA_Test создать и заполнить файл .env:
+```
+touch .env
 
-Далее нужно доработать описание...
+SECRET_KEY='Секретный ключ'
+ALLOWED_HOSTS='Имя или IP хоста'
+DEBUG=True
+```
+Далее переходим в директорию с backend
+```
+cd backend
+```
+Выполнить миграции:
+```
+python manage.py migrate
+```
+Создать суперпользователя:
+```
+python manage.py createsuperuser
+```
+Запустить проект:
+```
+python manage.py runserver
+```
+
+Админ панель: http://127.0.0.1:8000/admin/ 
+
+Документация для API доступна по адресу http://127.0.0.1:8000/api/redoc/. 
+Документация представлена в формате Redoc.
+
+Документация для API доступна по адресу http://127.0.0.1:8000/api/swagger/. 
+Документация представлена в формате Swagger.
 
 
-
-
-
-
-
-1. Установка [Docker](https://www.docker.com/get-started/)
-2. Скопировать и настроить переменные окружения в файле .env
-    ```bash
-     copy .env.example .env
-    ```
-3. Запуск проекта (доступно по адресу http://localhost:80)
-    ```bash
-    docker compose up -d
-    ```
-4. Остановка проекта и удаление контейнеров и базы данных
-    ```bash
-    docker compose down -v
-    ```
-
-Админ панель: http://localhost/admin/ 
-
-Swagger: http://localhost/swagger/
+## Автор
+[Бабенко Владимир](https://github.com/voven007)
