@@ -45,8 +45,6 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ShoppingCartViewSet(viewsets.ReadOnlyModelViewSet):
     """ViewSet для модели Корзины покупок"""
-    # queryset = ShoppingCart.objects.all()
-    # serializer_class = ShoppingCartSerializer
     permission_classes = (IsAuthenticated,)
     http_method_names = ('get', 'post', 'patch', 'delete', 'create')
 
