@@ -56,6 +56,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+
 Админ панель: http://127.0.0.1:8000/admin/ 
 
 Документация для API доступна по адресу http://127.0.0.1:8000/api/redoc/. 
